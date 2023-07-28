@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-my_pid=$$
-echo "$my_pid"
+pgrep -f 0-what-is-my-pid
