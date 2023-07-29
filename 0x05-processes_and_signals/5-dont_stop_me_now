@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # a script that stops a process using kill
-pid=$(pgrep -f "4-to_infinity_and_beyond")
-if [ -n "$pid" ]; then
-	kill -INT "$pid"
+pids=$(pgrep -f "4-to_infinity_and_beyond")
+if [ -n "$pids" ]; then
+	for pid in $pids; do
+		kill -15 "$pid"
+	done
 fi
