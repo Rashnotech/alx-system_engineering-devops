@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# a bash script taht write message to a file
+write_alive() {
+	while true; do
+		echo "I am alive!" >> /tmp/my_process
+		sleep 2
+	done
+}
+
+if [[ "$1" == "start" ]]; then
+	write_alive &
+	pid=$!
+	echo "$pid" > /var/run/my_process.pid
+	echo "manage_my_process started"
+elif [[ "$1" == "stop" ]]; then
+	if [[ -f "/var/run/my_process.pid" ]]; then
+		pid=$(cat /var/run/my_process.pid)
+		kill "$pid"
+		wait "$pid"
+		rm -f /var/run/my_process.pid
+		echo "manage_my_process stopped"
+	else
+		echo "manage_my_process is not running"
+	fi
+elif [[ "$1" == "restart" ]]; then
+	if [[ -f "/var/run/my_process.pid" ]]; then
+		pid=$(cat /var/run/my_process.pid)
+		kill "$pid"
+		wait "$pid"
+		rm -f /var/run/my_process.pid
+	fi
+	write_alive &
+	pid=$!
+	echo "$pid" > /var/run/my_process.pid
+	echo "manage_my_process restarted"
+else
+	echo "Usage: manage_my_process {start|stop|restart}"
+fi

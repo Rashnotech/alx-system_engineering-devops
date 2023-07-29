@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# a bash script that manages my_process (init)
+if [[ "$1" == "start" ]]; then
+	./manage_my_process start
+elif [[ "$1" == "stop" ]]; then
+	./manage_my_process stop
+elif [[ "$1" == "restart" ]]; then
+	./manage_my_process restart
+else
+	echo "Usage: manage_my_process {start|stop|restart}"
+fi
