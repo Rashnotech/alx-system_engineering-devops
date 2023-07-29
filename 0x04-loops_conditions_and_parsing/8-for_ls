@@ -2,5 +2,6 @@
 # a bash script that displays content of the current directory
 list=$(ls ./)
 for file in $list; do
-	echo "$file"
+	name_after_dash=$(echo "$file" | cut -d '-' -f 2-)
+	echo "$name_after_dash"
 done
