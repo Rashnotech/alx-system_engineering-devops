@@ -3,7 +3,7 @@
 hour=0
 minute=1
 echo "Hour: $hour"
-while [[ true ]]; do
+while true; do
 	if [ "$minute" -eq 60 ]; then
 		minute=0
 		hour=$((hour + 1))
@@ -11,7 +11,7 @@ while [[ true ]]; do
 	else
 		echo "$minute"
 	fi
-	if [ "$hour" -eq 12 -a "$minute" -eq 59 ]; then
+	if [[ "$hour" -eq 12 && "$minute" -eq 59 ]]; then
 		break;
 	fi
 	minute=$((minute + 1))
