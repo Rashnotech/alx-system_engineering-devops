@@ -17,7 +17,7 @@ delete_script() {
 trap int_signal_message SIGINT
 trap delete_script SIGQUIT SIGTERM
 
-sudo echo $$ >> /var/run/myscript.pid
+echo $$ > /var/run/myscript.pid
 
 while true; do
 	echo "To infinity and beyond"
