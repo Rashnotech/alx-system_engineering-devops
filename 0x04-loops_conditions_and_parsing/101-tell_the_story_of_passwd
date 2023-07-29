@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# a bash script that displays the content of a file and tells a story
+files=$(ls /etc/passwd)
+while IFS=: read -r username x uid gid gecos homedir shell; do
+	echo "The user $username is part of the $gid gang, lives in $homedir and rides $shell. $uid's place is protected by the passcode $x, more info about the user here: $gecos"
+done < "$files"
