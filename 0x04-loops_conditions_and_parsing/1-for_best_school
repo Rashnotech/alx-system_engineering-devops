@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# a bash script that display Best School
+for (( count=0; count < 10; count=count+1 )); do 
+	echo "Best School"
+done
