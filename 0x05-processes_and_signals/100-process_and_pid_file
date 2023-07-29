@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# a bash script that create file
+# displays a message indefinitely or on receiving signal
+# deletes upon receive quit or term signal
+
+int_signal_message() {
+	echo "Y U no love?!"
+	exit 0
+}
+
+delete_script() {
+	rm -f /var/run/myscript.pid
+	echo "I hate the kill command"
+	exit 0
+}
+
+trap int_signal_message SIGINT
+trap delete_script SIGQUIT SIGTERM
+
+sudo echo $$ >> /var/run/myscript.pid
+
+while true; do
+	echo "To infinity and beyond"
+	sleep 1
+done
