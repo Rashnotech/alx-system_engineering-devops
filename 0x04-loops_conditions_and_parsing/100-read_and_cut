@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # a bash script that displays the content of a file
+# shellcheck disable=SC2009
 files=$(ls /etc/passwd)
-while IFS=: read -r username x uid gid gecos homedir shell; do
+while IFS=: read -r username _ uid _ _ homedir _; do
 	echo "$username:$uid:$homedir"
 done < "$files"
