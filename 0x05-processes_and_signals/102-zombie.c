@@ -1,13 +1,12 @@
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <unistd.h>
-int infinite_while(void);
+#include <sys/types.h>
 /**
  * main - the entry point of the program
  * Return: an integer value 1 otherwise 0
  */
-int main()
+int infinite_while(void);
+int main(void)
 {
 	int i = 0;
 	pid_t pid;
@@ -28,9 +27,9 @@ int main()
  */
 int infinite_while(void)
 {
-    while (1)
-    {
-        sleep(1);
-    }
-    return (0);
+	while (1)
+	{
+		sleep(1);
+	}
+	return (0);
 }
