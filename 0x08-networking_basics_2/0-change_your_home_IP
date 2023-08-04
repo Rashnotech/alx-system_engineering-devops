@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # a script that configures an ubuntu server
 sudo echo '8.8.8.8	facebook.com' | tee -a /etc/hosts
-sudo sed '1s/^/127.0.0.2	localhost\n/' /etc/hosts > ~/hosts.new
+sed '1s/^/127.0.0.2	localhost\n/' /etc/hosts > ~/hosts.new
 cat ~/hosts.new > /etc/hosts
