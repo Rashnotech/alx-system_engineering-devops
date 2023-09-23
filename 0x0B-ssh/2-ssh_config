@@ -1,0 +1,8 @@
+Host *
+PasswordAuthentication no
+SendEnv LANG LC_*
+HashKnownHosts yes
+GSSAPIAuthentication yes
+IdentityFile ~/.ssh/school
+HostName 35.174.208.242
+User ubuntu
