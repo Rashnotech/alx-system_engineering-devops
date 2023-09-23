@@ -5,4 +5,4 @@
 # passphrase - betty
 # bits - 4096
 
-ssh-keygen -b 4096 -f school -t rsa -N betty
+ssh-keygen -b 4096 -f school -t rsa -N 'betty'
