@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+# a bash script that uses ssh to connect to server using private key
+
+# Server IP or hostname
+server="52.90.0.17"
+
+# User to connect as
+user="ubuntu"
+
+keyfile="~/.ssh/school"
+
+
+ssh -i "$keyfile $user@$server"
