@@ -17,13 +17,8 @@ exec { 'install nginx':
 file { '/etc/nginx/sites-available/default':
   content => "server {
     listen 80 default_server;
-    server_name _;
-    
-    location / {
-      return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4
-    }
-    location /redirect_me {
-    }
+    server_name _; 
+    rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
   }"
   require => Exec['install nginx'],
 }
