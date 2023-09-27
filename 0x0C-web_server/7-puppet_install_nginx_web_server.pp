@@ -7,7 +7,7 @@ package { 'nginx':
 # Ensure nginx is running
 
 exec { 'install nginx':
-  command = 'apt-get update; apt-get -y install',
+  command = 'apt -y update; apt-get -y install',
   provide => shell,
 }
 
