@@ -17,9 +17,11 @@ exec { 'install nginx':
 file { '/etc/nginx/sites-available/default':
   content => "server {
     listen 80 default_server;
-    root /var/www/html
-    index index.html
-    server_name _; 
+    server_name _;
+    root /var/www/html;
+    location / {
+      index index.html;
+    }
     rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
   }",
   require => Exec['install nginx'],
