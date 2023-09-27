@@ -8,7 +8,7 @@ package { 'nginx':
 # Ensure nginx is running
 
 exec { 'install nginx':
-  command = 'apt -y update && apt-get -y install nginx',
+  command  => 'sudo apt -y update && sudo apt-get -y install nginx',
   provider => shell,
 }
 
@@ -19,7 +19,7 @@ file { '/etc/nginx/sites-available/default':
     listen 80 default_server;
     server_name _; 
     rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-  }"
+  }",
   require => Exec['install nginx'],
 }
 
@@ -33,5 +33,5 @@ file { '/var/www/html/index.html':
 exec { 'run':
   command  => 'sudo service nginx restart',
   provider => shell,
-  require  => File['/etc/nginx/site-available/default/],
+  require  => File['/etc/nginx/sites-available/default'],
 }
