@@ -2,13 +2,14 @@
 include stdlib
 
 package { 'nginx':
+  ensure => installed,
 }
 
 # Ensure nginx is running
 
 exec { 'install nginx':
-  command = 'apt -y update; apt-get -y install',
-  provide => shell,
+  command = 'apt -y update && apt-get -y install nginx',
+  provider => shell,
 }
 
 # Configuration Nginx server for port 80
@@ -29,7 +30,7 @@ file { '/etc/nginx/sites-available/default':
 
 # Create a custom HTML file
 file { '/var/www/html/index.html':
-  ensure  => 'present',
+  ensure  => 'file',
   content => 'Hello World!',
   require => Exec['install nginx'],
 }
@@ -37,4 +38,5 @@ file { '/var/www/html/index.html':
 exec { 'run':
   command  => 'sudo service nginx restart',
   provider => shell,
+  require  => File['/etc/nginx/site-available/default/],
 }
