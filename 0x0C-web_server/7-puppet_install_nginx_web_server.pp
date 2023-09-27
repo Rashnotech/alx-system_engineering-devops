@@ -1,15 +1,14 @@
 # Installing nginx
+include stdlib
 
 package { 'nginx':
-  ensure => 'installed',
 }
 
 # Ensure nginx is running
 
-service { 'nginx':
-  ensure  => 'running',
-  enable  => true,
-  require => Package['nginx']
+exec { 'install nginx':
+  command = 'apt-get update; apt-get -y install',
+  provide => shell,
 }
 
 # Configuration Nginx server for port 80
@@ -25,13 +24,17 @@ file { '/etc/nginx/sites-available/default':
     location /redirect_me {
     }
   }"
-  require => Package['nginx'],
-  notify  => Service['nginx'],
+  require => Exec['install nginx'],
 }
 
 # Create a custom HTML file
 file { '/var/www/html/index.html':
+  ensure  => 'present',
   content => 'Hello World!',
-  require => Package['nginx'],
-  notify  => Service['nginx'],
+  require => Exec['install nginx'],
+}
+
+exec { 'run':
+  command  => 'sudo service nginx restart',
+  provider => shell,
 }
