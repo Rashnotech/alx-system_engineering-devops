@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# installation and configuration of HAproxy (load balancer)
+sudo apt -y install
+sudo apt -y install haproxy=2.7.\*
+
