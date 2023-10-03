@@ -11,7 +11,6 @@ exec { 'install nginx':
 }
 
 file { '/etc/nginx/sites-available/default':
-  content => file { '/etc/nginx/sites-available/default':
   content => "server {
     listen 80 default_server;
     server_name _;
