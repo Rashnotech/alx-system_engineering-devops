@@ -5,12 +5,11 @@ sudo apt install
 sudo apt -y install haproxy
 
 echo "
-frontend rash_frontend
+frontend rash_http
 	bind *:80
 	mode http
 	default_backend rash_backend
 	
-
 backend rash_backend
 	balance roundrobin
 	server 285293-web-01 35.174.208.242 check
