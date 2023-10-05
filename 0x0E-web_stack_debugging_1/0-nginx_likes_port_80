@@ -2,5 +2,5 @@
 # a bash script that configures a server to listen to port 80
 replacement="80"
 sudo sed -i "s#8080#$replacement#" /etc/nginx/sites-available/default
-ln -sF '/etc/nginx/sites-available/default' '/etc/nginx/site-enabled'
+ln -s '/etc/nginx/sites-available/default' '/etc/nginx/site-enabled'
 sudo service nginx restart
