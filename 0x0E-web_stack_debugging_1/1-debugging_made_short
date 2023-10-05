@@ -2,4 +2,4 @@
 # a bash script that configures a server to listen to port 80
 sudo sed -i "s#8080#80#" /etc/nginx/sites-enabled/default
 sudo service nginx start
-sleep 5; sudo service nginx stop
+kill -9 "$(cat /var/run/nginx.pid)"
