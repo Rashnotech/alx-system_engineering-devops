@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# a bash script that accept args and display its information
+get_dns_info () {
+	local domain=$1
+	local subdomain=$2
+	local record_type=$(dig +short -t A "$subdomain.$domain" 2>/dev/null)
+	local destination=$(dig +short "$subdomain.$domain" 2>/dev/null)
+	if [ -n $record_type ]; then
+		echo "The subdomain $subdomain is a A record and points to $destination"
+	fi
+}
+
+if [ $# -eq 2 ]; then
+	get_dns_info "$1" "$2"
+else
+	domain=$1
+	default_sub=("www" "lb-01" "web-01" "web-02")
+	for subdomain in "${default_sub[@]}"; do
+		get_dns_info "$domain" "$subdomain"
+	done
+fi
