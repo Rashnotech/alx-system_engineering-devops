@@ -5,7 +5,5 @@ if [ $# -ne 1 ]; then
 fi
 passwd="$1"
 current=$(date +'%d-%m-%Y')
-mysqldump -uroot -p"$passwd" --all-databases > backup.sql
-if [ $? -eq 0 ]; then
-        tar -czvf "$current.tar.gz" backup.sql
-fi
+mysqldump -uroot -p"$1" --all-databases > backup.sql
+tar -czf "$current".tar.gz backup.sql
