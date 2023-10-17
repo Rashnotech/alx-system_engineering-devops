@@ -3,4 +3,4 @@
 if [ $# -ne 1 ]; then
 	exit 1
 fi
-su - "$1" -c "whoami"
+sudo -u "$1" whoami
