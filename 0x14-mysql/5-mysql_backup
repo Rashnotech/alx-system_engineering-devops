@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# a script that generates a MySQL dump and creates a compressed archive
+if [ $# -ne 1 ]; then
+        exit 1
+fi
+passwd="$1"
+current=$(date +'%d-%m-%Y')
+mysqldump -u holberton_user -p"$passwd" --all-databases > backup.sql
+if [ $? -eq 0 ]; then
+        tar -czvf "$current.tar.gz" backup.sql
+fi
