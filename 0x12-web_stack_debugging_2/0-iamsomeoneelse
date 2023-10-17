@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-id -un $1
+su - "$1" -c "whoami"
