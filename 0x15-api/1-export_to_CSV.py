@@ -2,6 +2,7 @@
 """ a module that returns information about an employee """
 import requests
 from sys import argv
+import csv
 
 
 def progress(payload, params):
@@ -19,10 +20,9 @@ if __name__ == '__main__':
     emp = progress({'id': id}, 'users')
     todos = progress({'userId': id}, 'todos')
     filename = f'{id}.csv'
-    with open(filename, 'w') as file:
-        for i in range(len(todos)):
-            file.write('"{}","{}","{}","{}"\n'.format(todos[i].get('userId'),
-                                                      emp[0].get('name'),
-                                                      todos[i].get(
-                                                                'completed'),
-                                                      todos[i].get('title')))
+    username = emp[0].get('name')
+    with open(filename, 'w', newline="") as file:
+        csv_writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+        for todo in todos:
+            csv_writer.writerow([id, username, todo.get('completed'),
+                                todo.get('title')])
