@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ a module that returns information about an employee """
+import csv
 import requests
 from sys import argv
-import csv
 
 
 def progress(payload, params):
@@ -16,7 +16,7 @@ def progress(payload, params):
 
 if __name__ == '__main__':
     """ code executation """
-    id = argv[1]
+    id = int(argv[1])
     emp = progress({'id': id}, 'users')
     todos = progress({'userId': id}, 'todos')
     filename = f'{id}.csv'
