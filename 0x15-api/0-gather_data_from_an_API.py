@@ -18,7 +18,7 @@ if __name__ == '__main__':
     id = argv[1]
     done = 0
     emp = progress({'id': id}, 'users')
-    todos = sorted(progress({'userId': id}, 'todos'), key=lambda x: x['title'])
+    todos = progress({'userId': id}, 'todos')
     for i in range(len(todos)):
         if todos[i].get('completed') is True:
             done += 1
@@ -26,4 +26,4 @@ if __name__ == '__main__':
                                                           done, len(todos)))
     for i in range(len(todos)):
         if todos[i].get('completed'):
-            print('\t{}'.format(todos[i].get('title')))
+            print('\t {}'.format(todos[i].get('title')))

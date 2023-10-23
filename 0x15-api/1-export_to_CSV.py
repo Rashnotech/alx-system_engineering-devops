@@ -17,9 +17,9 @@ if __name__ == '__main__':
     """ code executation """
     id = argv[1]
     emp = progress({'id': id}, 'users')
-    todos = sorted(progress({'userId': id}, 'todos'), key=lambda x: x['title'])
+    todos = progress({'userId': id}, 'todos')
     filename = f'{id}.csv'
-    with open(filename, 'w', encoding='utf-8') as file:
+    with open(filename, 'w') as file:
         for i in range(len(todos)):
             file.write('"{}","{}","{}","{}"\n'.format(todos[i].get('userId'),
                                                       emp[0].get('name'),
