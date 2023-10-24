@@ -16,13 +16,13 @@ def progress(payload, params):
 if __name__ == '__main__':
     """ code executation """
     id = argv[1]
-    emp = progress({'id': id}, 'users')
+    user = progress({}, f'users/{id}')
     todos = progress({'userId': id}, 'todos')
     filename = f'{id}.csv'
     with open(filename, 'w', encoding='utf-8') as file:
         for i in range(len(todos)):
             file.write('"{}","{}","{}","{}"\n'.format(todos[i].get('userId'),
-                                                      emp[0].get('username'),
+                                                      user['username'],
                                                       todos[i].get(
                                                           'completed'),
                                                       todos[i].get('title')))
