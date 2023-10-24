@@ -19,7 +19,7 @@ if __name__ == '__main__':
     user_id = argv[1]
     user = progress({}, f'users/{user_id}')
     todos = progress({'userId': user_id}, 'todos')
-    filename = f'user_id.json'
+    filename = f'{user_id}.json'
     username = user['username']
     result = {user_id: [{
                         'task': todo.get('title'),
