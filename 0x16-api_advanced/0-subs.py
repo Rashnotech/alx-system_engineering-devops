@@ -10,9 +10,10 @@ def number_of_subscribers(subreddit):
         Returns:
             int: number of subscribers
     """
+    headers = {'User-Agent': 'MyRedditScraper/1.0'}
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     # Set a custom User-Agent to avoid API rate limiting
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
         subscribers = data['data']['subscribers']
