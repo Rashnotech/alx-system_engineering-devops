@@ -12,8 +12,6 @@ def recurse(subreddit, hot_list=[], after=None):
         Returns:
             list: a list containing the titles of all hot articles
     """
-    if subreddit is None:
-        return None
     headers = {'User-Agent': 'MyRedditScraper/1.0'}
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
     param = {'limit': 100, 'after': after}
@@ -21,7 +19,7 @@ def recurse(subreddit, hot_list=[], after=None):
     try:
         data = response.json().get('data')
         if data['after']:
-            return recurse(subreddit, hot_list, data['after'])
+            recurse(subreddit, hot_list, data['after'])
         for val in data['children']:
             hot_list.append(val['data']['title'])
         return hot_list
