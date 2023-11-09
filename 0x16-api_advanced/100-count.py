@@ -12,7 +12,7 @@ def count_words(subreddit, word_list):
     """
     count = {}
     recurse(subreddit, word_list, count)
-    for key, val in count.items():
+    for key, val in sorted(count.items(), key=lambda x: x[0]):
         print('{}: {}'.format(key, val))
 
 
