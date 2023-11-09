@@ -20,10 +20,12 @@ def recurse(subreddit, word_list, count={}, after=None):
     """ recursively count """
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
     headers = {'User-Agent': 'MyRedditScrapper/1.0'}
-    param = {'limit': 100, 'after': after}
+    param = {'limit': 100, 'after': after} if after else {'limit': 100}
     response = get(url, headers=headers, params=param, allow_redirects=False)
     try:
         data = response.json().get('data')
+        if response.status_code != 200:
+            return
         if data['after']:
             recurse(subreddit, word_list, count, data['after'])
         for val in data['children']:
